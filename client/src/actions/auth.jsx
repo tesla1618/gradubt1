@@ -1,6 +1,7 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADED, AUTH_ERROR, LOGOUT, AUTHENTICATED, NOT_AUTHENTICATED } from "./types";
+import { LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADED, AUTH_ERROR, LOGOUT, AUTHENTICATED, NOT_AUTHENTICATED, SIGNUP_SUCCESS, SIGNUP_FAIL, EMAIL_ERROR, PASSWORD_ERROR } from "./types";
 import axios from "axios";
 import { API_URL } from "../config";
+import { useState } from "react";
 
 const LOCALHOST = `${API_URL}`;
 
@@ -70,13 +71,14 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password, setError) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
   const body = JSON.stringify({ email, password });
+  console.log(email, password);
   try {
     const res = await axios.post(`${LOCALHOST}/auth/jwt/create/`, body, config);
     dispatch({
@@ -84,10 +86,64 @@ export const login = (email, password) => async (dispatch) => {
       payload: res.data,
     });
 
+    console.log("SUCCESS LOGIN");
     dispatch(loadUser());
   } catch (err) {
+    console.log("NOT A SUCCESS LOGIN");
+    // console.log(err.response.data.detail);
+    console.log(err);
+    setError(err.response.data.detail);
     dispatch({
       type: LOGIN_FAIL,
     });
   }
 };
+
+export const registerUser = (name, email, password, re_password, sid, dept, is_student, is_teacher, isRegistered) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ name, email, password, re_password, sid, dept, is_student, is_teacher });
+  console.log("SUCCESS REG RUN");
+  try {
+    const res = await axios.post(`${LOCALHOST}/auth/users/`, body, config);
+    dispatch({
+      type: SIGNUP_SUCCESS,
+      payload: res.data,
+    });
+
+    console.log("SUCCESS REG");
+
+    isRegistered(true);
+  } catch (err) {
+    console.log(err.response.data);
+    const errorMessage = formatErrorMessage(err);
+    // dispatch();
+    dispatch({
+      type: SIGNUP_FAIL,
+      payload: errorMessage,
+    });
+  }
+};
+
+export function formatErrorMessage(errormsg) {
+  switch (errormsg) {
+    case errormsg.response.data.email:
+      return "Email is already in use";
+    case errormsg.response.data.password:
+      return "Password must be at least 8 characters";
+    case errormsg.response.data.non_field_errors:
+      return "Passwords do not match";
+    default:
+      return "Something went wrong";
+  }
+}
+
+export function signUpFailed(message) {
+  return {
+    type: SIGNUP_FAIL,
+    payload: message,
+  };
+}

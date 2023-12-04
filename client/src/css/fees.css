@@ -1,0 +1,74 @@
+.fees-overview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 18px;
+  /* flex-wrap: wrap; */
+  /* max-width: 100vh; */
+  /* width: 150%; */
+}
+
+@media screen and (max-width: 768px) {
+  .demand {
+    background-color: rgb(35, 149, 255);
+    padding: 20px 23px 20px 23px;
+  }
+  .paid {
+    background-color: #00a050;
+    padding: 20px 23px 20px 23px;
+  }
+  .due {
+    background-color: rgb(255, 81, 81);
+    padding: 20px 23px 20px 23px;
+  }
+  .amount {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .amount-status {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .demand {
+    background-color: rgb(35, 149, 255);
+    padding: 20px 50px 20px 50px;
+  }
+  .paid {
+    background-color: #00a050;
+    padding: 20px 50px 20px 50px;
+  }
+  .due {
+    background-color: rgb(255, 81, 81);
+    padding: 20px 50px 20px 50px;
+  }
+  .amount {
+    font-size: 30px;
+    font-weight: bold;
+  }
+}
+
+.text-demand {
+  color: rgb(35, 149, 255) !important;
+}
+.text-paid {
+  color: #00a050 !important;
+}
+.text-due {
+  color: rgb(255, 81, 81) !important;
+}
+
+td.borderless {
+  border: 0 !important;
+}
+
+.pay-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

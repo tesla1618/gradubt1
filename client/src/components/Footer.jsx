@@ -7,7 +7,7 @@ function Footer() {
     <div className="footer">
       <div className="footer-content">
         <div className="footer-left">
-          <img src="seatfinder.png" alt="Inizia Logo" className="footer-logo" />
+          <img src="/gradubt.png" alt="Gradubt Logo" className="footer-logo" />
         </div>
         <div className="footer-links">
           <ul className="footer-list">

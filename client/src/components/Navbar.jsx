@@ -19,8 +19,8 @@ const Navbar = ({ logout, isAuthenticated }) => {
   );
   const authLinks = () => (
     <>
-      <NavLink className={({ isActive }) => (isActive ? "sf-create-event active" : "sf-create-event")} to="/create">
-        <i class="bi bi-calendar2-check"></i>
+      <NavLink className={({ isActive }) => (isActive ? "sf-create-event active" : "sf-create-event")} to="/registered">
+        <i class="bi bi-person-circle"></i>
       </NavLink>
       <NavLink className="sf-logout-2" onClick={logout}>
         <i class="bi bi-box-arrow-right"></i>
@@ -33,7 +33,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-blurry">
         <div className="container">
-          <img src="/seatfinder.png" alt="SeatFinder Logo" className="navbar-logo" />
+          <img src="/gradubt.png" alt="SeatFinder Logo" className="navbar-logo" />
           <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -42,22 +42,33 @@ const Navbar = ({ logout, isAuthenticated }) => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")} to="/about">
-                  About
+                <NavLink className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")} to="/classes">
+                  Classrooms
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")} to="/fees">
+                  Fees
+                </NavLink>
+              </li>
+
+              {isAuthenticated ? (
+                <li className="nav-item">
+                  <NavLink className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")} to="/results">
+                    Results
+                  </NavLink>
+                </li>
+              ) : null}
+              <li className="nav-item">
+                <NavLink className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")} to="/books">
+                  Books
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")} to="/terms">
-                  Terms
+                  Blood
                 </NavLink>
               </li>
-              {isAuthenticated ? (
-                <li className="nav-item">
-                  <NavLink className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")} to="/create">
-                    Create
-                  </NavLink>
-                </li>
-              ) : null}
             </ul>
           </div>
           <div className="d-flex align-items-center ms-auto">{isAuthenticated ? authLinks() : guestLinks()}</div>
@@ -70,22 +81,37 @@ const Navbar = ({ logout, isAuthenticated }) => {
           </NavLink>
         </span>
         <span className="nav-item">
-          <NavLink className={({ isActive }) => (isActive ? "nav-link-mbl active-link-mbl" : "nav-link-mbl")} to="/about">
-            About
+          <NavLink className={({ isActive }) => (isActive ? "nav-link-mbl active-link-mbl" : "nav-link-mbl")} to="/classes">
+            Classrooms
+          </NavLink>
+        </span>
+        <span className="nav-item">
+          <NavLink className={({ isActive }) => (isActive ? "nav-link-mbl active-link-mbl" : "nav-link-mbl")} to="/fees">
+            Fees
+          </NavLink>
+        </span>
+        {/* {isAuthenticated ? (
+          <span className="nav-item">
+            <NavLink className={({ isActive }) => (isActive ? "nav-link-mbl active-link-mbl" : "nav-link-mbl")} to="/results">
+              Results
+            </NavLink>
+          </span>
+        ) : null} */}
+        <span className="nav-item">
+          <NavLink className={({ isActive }) => (isActive ? "nav-link-mbl active-link-mbl" : "nav-link-mbl")} to="/results">
+            Results
+          </NavLink>
+        </span>
+        <span className="nav-item">
+          <NavLink className={({ isActive }) => (isActive ? "nav-link-mbl active-link-mbl" : "nav-link-mbl")} to="/books">
+            Books
           </NavLink>
         </span>
         <span className="nav-item">
           <NavLink className={({ isActive }) => (isActive ? "nav-link-mbl active-link-mbl" : "nav-link-mbl")} to="/terms">
-            Terms
+            Blood
           </NavLink>
         </span>
-        {isAuthenticated ? (
-          <span className="nav-item">
-            <NavLink className={({ isActive }) => (isActive ? "nav-link-mbl active-link-mbl" : "nav-link-mbl")} to="/create">
-              Create
-            </NavLink>
-          </span>
-        ) : null}
       </div>
     </>
   );

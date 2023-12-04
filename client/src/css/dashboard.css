@@ -1,0 +1,80 @@
+.gbt-header {
+  background-color: #00a050;
+  padding: 35px;
+  border-radius: 20px 20px 0px 0px;
+  color: white;
+}
+
+.course {
+  /* padding: 15px; */
+  /* border: 1px solid #333; */
+  /* border-radius: 8px; */
+  /* width: 200px; */
+  border-top-left-radius: 10px;
+  text-align: left;
+  margin: 10px 0px 0px 0px;
+  /* color: #fff; */
+  /* color: white; */
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: baseline;
+  /* flex-wrap: nowrap; */
+  word-wrap: break-word;
+}
+
+.course-code {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90px;
+  height: 80px !important;
+  border-top-left-radius: 7px;
+  color: #fff;
+}
+.course-name {
+  padding: 15px;
+}
+
+#course1-title {
+  background-color: #6b00c2;
+  padding: 15px;
+} /* Yellow */
+#course2-title {
+  background-color: #00ca7d;
+  padding: 15px;
+} /* MediumSpringGreen */
+#course3-title {
+  background-color: #007fb1;
+  padding: 15px;
+} /* SkyBlue */
+#course4-title {
+  background-color: #ff6347;
+  padding: 15px;
+} /* Tomato */
+#course5-title {
+  background-color: #c00060;
+  padding: 15px;
+} /* HotPink */
+#course6-title {
+  background-color: #00a524;
+  padding: 15px;
+} /* Turquoise */
+#course7-title {
+  background-color: #8a2be2;
+  padding: 15px;
+} /* BlueViolet */
+#course8-title {
+  background-color: #00ced1;
+  padding: 15px;
+} /* DarkTurquoise */
+#course9-title {
+  background-color: #ffa07a;
+  padding: 15px;
+} /* LightSalmon */
+#course10-title {
+  background-color: #778899;
+  padding: 15px;
+} /* LightSlateGray */

@@ -22,6 +22,7 @@ const client = axios.create({
 });
 
 const LoginPage = ({ login, isAuthenticated }) => {
+  const [hasError, setError] = useState("");
   let invalid = false;
   const [formData, setFormData] = useState({
     email: "",
@@ -32,12 +33,12 @@ const LoginPage = ({ login, isAuthenticated }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    login(email, password);
+    setError("");
+    login(email, password, setError);
   };
 
   if (isAuthenticated) {
-    return <Navigate to="/" />;
+    return <Navigate to="/admin/students" />;
   } else {
     invalid = true;
   }
@@ -54,9 +55,14 @@ const LoginPage = ({ login, isAuthenticated }) => {
             </div>
             <div className="col-md-5 col-12 pcontainer login-pc-v">
               <form className="login-form" onSubmit={(e) => onSubmit(e)}>
-                <div class="info-box" role="alert">
-                  Welcome back! Please enter your credentials to log in.
-                </div>
+                {hasError ? (
+                  <div className="alert alert-danger">{hasError}</div>
+                ) : (
+                  <div className="info-box" role="alert">
+                    Welcome back! Please enter your credentials to log in.
+                  </div>
+                )}
+
                 <input required type="email" name="email" className="login-field" placeholder="Email" value={email} onChange={(e) => onChange(e)} />
                 <input required type="password" name="password" className="login-field" placeholder="Password" value={password} onChange={(e) => onChange(e)} />
                 <button type="submit" className="login-button">

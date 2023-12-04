@@ -43,18 +43,19 @@
 }
 
 .info-box {
-  background: #3e3f6a;
+  background: #00a050;
   padding: 17px;
   margin: 25px 0px 25px 0px;
   border-radius: 10px;
+  color: #fff;
 }
 
 .login-field {
   width: 300px;
   padding: 10px;
   margin: 5px 0px 5px 0px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid #f0f0f0;
+  /* background-color: rgba(0, 0, 0, 0.2); */
   border-radius: 5px;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -62,9 +63,10 @@
 
 .login-field-2 {
   width: 185px;
+  height: 70px;
   color: #e1e1e1;
   padding: 10px;
-  margin: 5px 0px 5px 0px;
+  margin: 0px 0px 5px 0px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -75,7 +77,7 @@
 
 .login-button-2 {
   /* display: inline-flex; */
-  background-color: #331255;
+  background-color: #00a050;
   color: white;
   width: 120px;
   margin: 5px 0px 5px 0px;
@@ -101,18 +103,18 @@
   /* padding: 10px; */
   margin: 5px 0px 5px 0px;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  background-color: rgba(0, 0, 0, 0.2);
+  /* background-color: rgba(0, 0, 0, 0.2); */
   border-radius: 5px;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 .login-field:hover {
-  border-color: #6c5ce7;
+  border-color: #00a050;
   box-shadow: 0 0 5px rgba(108, 92, 231, 0.5);
 }
 
 .login-button {
-  background-color: #331255;
+  background-color: #00a050;
   color: white;
   width: 300px;
   margin: 5px 0px 5px 0px;
@@ -146,7 +148,7 @@
 }
 
 .login-button:hover {
-  background-color: #580052;
+  background-color: #00753b;
 }
 
 .checkbox-error {
@@ -154,13 +156,13 @@
 }
 
 input[type="text"] {
-  color: #e1e1e1;
+  color: #00a050;
 }
 input[type="password"] {
-  color: #e1e1e1;
+  color: #00a050;
 }
 input[type="email"] {
-  color: #e1e1e1;
+  color: #00a050;
 }
 textarea {
   color: #e1e1e1;
@@ -168,16 +170,20 @@ textarea {
 input[type="file"] {
   color: #e1e1e1;
 }
+input[type="date"] {
+  color: #e1e1e1;
+}
 input[type="file"]::file-selector-button {
   /* border: 2px solid #6c5ce7;
   padding: 0.2em 0.4em;
   border-radius: 0.2em; */
-  background-color: #a29bfe;
+  background-color: #00a050;
   transition: 0.5s;
+  color: white;
 }
 
 input[type="file"]::file-selector-button:hover {
-  background-color: #81ecec;
+  background-color: #00a050;
   /* border: 2px solid #81ecec; */
 }
 

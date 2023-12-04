@@ -1,13 +1,14 @@
 /* Navbar.css */
 
 .navbar {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #fff;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
   padding: 15px 5px !important;
   position: sticky !important; /* Make the navbar sticky */
   top: 0; /* Stick to the top of the viewport */
   z-index: 1000; /* Ensure the navbar is above other content */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-logo {
@@ -32,7 +33,7 @@
 
 .navbar-nav .nav-link {
   position: relative; /* Add position relative */
-  color: white;
+  color: #2b2b2b;
   transition: color 0.3s;
 }
 
@@ -43,39 +44,43 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #6c5ce7; /* Greenish color */
+  background-color: #00a050; /* Greenish color */
   transition: width 0.3s;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #6c5ce7;
+  color: #00a050;
 }
 
 .navbar-nav .nav-link.active-link {
-  color: #6c5ce7 !important; /* Change active link color */
+  color: #00a050 !important; /* Change active link color */
 }
 
 .nav-link-mbl {
   position: relative; /* Add position relative */
   color: white;
   padding: 12px 15px;
+  margin-bottom: 0px !important;
   transition: color 0.3s;
   text-decoration: none !important;
+  /* display: block; */
+  /* overflow-x: auto; */
+  display: inline;
 }
 
 .nav-link-mbl::before {
   content: "";
-  position: absolute;
+  /* position: absolute; */
   bottom: -2px;
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #6c5ce7; /* Greenish color */
+  background-color: #00a050; /* Greenish color */
   transition: width 0.3s;
 }
 
 .nav-link-mbl.active-link-mbl {
-  background-color: #6c5ce7 !important; /* Change active link color */
+  background-color: #005229 !important; /* Change active link color */
 }
 
 .navbar-nav .nav-link.active-link::before {
@@ -83,7 +88,7 @@
 }
 
 .isActive {
-  color: #6c5ce7 !important;
+  color: #00a050 !important;
 }
 
 .custom-button {
@@ -106,12 +111,23 @@
     display: none; /* Hide the links on small screens */
   }
   .navbar-nav-mbl {
-    display: block; /* Display the links below navbar on small screens */
-    /* flex-direction: row; */
+    display: block;
+    /* display: inline-flex; 
     text-align: center;
-    background-color: #08102b;
+    justify-content: center;
+    flex-direction: row; */
+    background-color: #00a050;
     padding: 12px;
+    /* width: fit-content; */
+    /* max-width: 100%; */
+    /* overflow-x: scroll !important; */
+
+    /* width: 100%; */
+    /* overflow: hidden !important; */
+    /* overflow: hidden; */
     color: #e1e1e1;
+    /* height: 55px; */
+    overflow-x: scroll;
   }
   .d-lg-none .navbar-nav {
     display: flex; /* Display the links below navbar on small screens */
@@ -151,6 +167,7 @@
   text-decoration: none;
   color: #ffffff;
   border-radius: 20px;
+  background-color: #00a050;
   transition: all 0.3s ease;
 }
 
@@ -219,7 +236,7 @@
 }
 
 .sf-link:hover {
-  background: linear-gradient(45deg, rgb(29, 21, 53), rgb(109, 0, 67));
+  background: #005229;
   background-size: 400% 400%;
   animation: sfLinkAnimation 4s linear infinite;
   color: #fff;
@@ -238,7 +255,7 @@
 }
 .sf-link.active,
 .sf-create-event.active {
-  background: linear-gradient(300deg, #443572, #3d7148);
+  background: #005229;
   background-size: 1000% 1000%;
 
   -webkit-animation: sfLinkAnimated 8s ease infinite;

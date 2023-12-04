@@ -1,0 +1,38 @@
+@media screen and (max-width: 768px) {
+  .chart-container {
+    width: 390px !important;
+    height: auto !important;
+  }
+  .chart-container2 {
+    width: 30px !important;
+    height: auto !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .chart-container {
+    width: 700px !important;
+    height: auto !important;
+  }
+  .chart-container {
+    width: 700px !important;
+    height: auto !important;
+  }
+}
+
+.wrapper {
+  border: 3px solid blue;
+}
+
+.barCompleted {
+  background-color: #00a050;
+  width: 62.5%;
+  border-radius: 10px;
+  /* height: auto; */
+  text-align: center;
+  /* padding: 10px; */
+}
+
+.label {
+  font-size: 20px;
+  color: green;
+}

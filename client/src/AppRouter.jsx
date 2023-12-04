@@ -12,6 +12,14 @@ import CreateEvent from "./components/CreateEvent";
 import { API_URL } from "./config";
 import { Provider } from "react-redux";
 import store from "./store";
+import RegisterEvent from "./components/RegisterEvent";
+import MyEvents from "./components/MyEvents";
+import StudentList from "./components/StudentList";
+import CompleteReg from "./components/CompleteReg";
+import ClassRooms from "./components/ClassRooms";
+import Fees from "./components/Fees";
+import Results from "./components/Results";
+import Books from "./components/Books";
 
 const LOCALHOST = `${API_URL}`;
 
@@ -21,17 +29,6 @@ class AppRouter extends Component {
     this.state = {
       eventData: [],
     };
-  }
-
-  componentDidMount() {
-    axios
-      .get(`${LOCALHOST}/api/events/`)
-      .then((response) => {
-        this.setState({ eventData: response.data.results });
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
   }
 
   render() {
@@ -45,9 +42,17 @@ class AppRouter extends Component {
               {/* <Route element={<Navbar />}></Route> */}
             </Route>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<RegPage />} />
+            <Route path="/signup" element={<RegPage emailError={this.state.emailError} passwordError={this.state.passwordError} alertBoxClass={this.state.alertBoxClass} errorMessage={this.state.errorMessage} />} />
             <Route path="/create" element={<CreateEvent />} />
+            <Route path="/registered" element={<MyEvents />} />
             <Route path="/:eventLink" element={<EventPage events={this.state.eventData} />} />
+            <Route path="/:eventLink/register" element={<RegisterEvent events={this.state.eventData} />} />
+            <Route path="/admin/students" element={<StudentList />} />
+            <Route path="/signup/complete/:name/:sid/:dept" element={<CompleteReg />} />
+            <Route path="/classes" element={<ClassRooms />} />
+            <Route path="/fees" element={<Fees />} />
+            <Route path="/results" element={<Results />} />
+            <Route path="/books" element={<Books />} />
           </Routes>
         </BrowserRouter>
       </Provider>
