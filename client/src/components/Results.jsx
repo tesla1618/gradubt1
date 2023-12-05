@@ -1,155 +1,60 @@
-import * as React from "react";
-
+import React, { useState, useEffect } from "react";
 import { CompactTable } from "@table-library/react-table-library/compact";
 import { useTheme } from "@table-library/react-table-library/theme";
 import { DEFAULT_OPTIONS, getTheme } from "@table-library/react-table-library/material-ui";
 import { Stack, TextField } from "@mui/material";
-import { FaSearch } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
-
 import Layout from "./Layout";
-import CGChart from "./CGChart";
+import CGChart2 from "./CGChart2";
 
 const Results = () => {
-  const nodes = [
-    {
-      id: "0",
-      code: "CSE332",
-      name: "Advanced Programming Lab",
-      credit: 1.5,
-      type: "Lab",
-      mid: 26,
-      final: 35,
-      misc: 27,
-      total: 88,
-      grade: "A+",
-    },
-    {
-      id: "8",
-      code: "CSE310",
-      name: "Operating Systems Lab",
-      credit: 1.5,
-      type: "Lab",
-      final: 35,
-      mid: 26,
-      misc: 26,
-      total: 87,
-      grade: "A+",
-    },
-    {
-      id: "1",
-      code: "CSE316",
-      name: "Microprocessor and Interfacing Lab",
-      credit: 1.5,
-      type: "Lab",
-      mid: 31,
-      final: 23,
-      misc: 26,
-      total: 80,
-      grade: "A+",
-    },
-    {
-      id: "3",
-      code: "CSE315",
-      name: "Microprocessor and Interfacing",
-      credit: 3,
-      type: "Theory",
-      mid: 24,
-      final: 30,
-      misc: 26,
-      total: 80,
-      grade: "A+",
-    },
-    {
-      id: "2",
-      code: "CSE331",
-      name: "Advanced Programming",
-      credit: 3,
-      type: "Theory",
-      mid: 25,
-      final: 31,
-      misc: 24,
-      total: 80,
-      grade: "A+",
-    },
-
-    {
-      id: "4",
-      code: "CSE317",
-      name: "System Analysis and Design",
-      credit: 3,
-      type: "Theory",
-      mid: 24,
-      final: 32,
-      misc: 24,
-      total: 80,
-      grade: "A+",
-    },
-    {
-      id: "5",
-      code: "CSE318",
-      name: "System Analysis and Design Lab",
-      credit: 1.5,
-      type: "Lab",
-      final: 30,
-      mid: 21,
-      misc: 29,
-      total: 80,
-      grade: "A+",
-    },
-    {
-      id: "6",
-      code: "CSE313",
-      name: "Mathemical Analysis for Computer Science",
-      credit: 3,
-      type: "Theory",
-      final: 30,
-      mid: 22,
-      misc: 28,
-      total: 80,
-      grade: "A+",
-    },
-    {
-      id: "7",
-      code: "CSE309",
-      name: "Operating Systems",
-      credit: 3,
-      type: "Theory",
-      final: 32,
-      mid: 22,
-      misc: 26,
-      total: 80,
-      grade: "A+",
-    },
-  ];
-  const key = "Search";
-  let data = { nodes };
-
+  const [results, setResults] = useState([]);
+  const [search, setSearch] = React.useState("");
   const materialTheme = getTheme(DEFAULT_OPTIONS);
   const theme = useTheme(materialTheme);
-
-  const [search, setSearch] = React.useState("");
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
-  const semesters = ["Semester 1", "Semester 2", "Semester 3", "Semester 4", "Semester 5"];
-  const cgpaValues = [3.98, 3.94, 3.87, 3.76, 3.81];
-  const sgpaValues = [3.98, 3.9, 3.75, 3.43, 4.0];
 
-  data = {
-    nodes: data.nodes.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()) || item.code.toLowerCase().includes(search.toLowerCase())),
+  useEffect(() => {
+    fetchResults();
+  }, []); // Fetch results only once when the component mounts
+
+  const fetchResults = async () => {
+    try {
+      const response = await fetch(`http://192.168.0.106:8000/results/?username=rajieb`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setResults(data.results);
+    } catch (error) {
+      console.error("Error fetching results:", error);
+    }
   };
 
+  // const data = {
+  //   nodes: results.filter((item) => item.semester.courses[0].ccode.includes(search.toLowerCase()) || item.semester.year.toString().includes(search) || item.mark.toString().includes(search) || item.grade.toLowerCase().includes(search.toLowerCase()) || item.gpa.toString().includes(search)),
+  // };
+
+  const nodes = results.flatMap((item) =>
+    item.semester.courses.map((course) => ({
+      semester: item.semester.semester,
+      year: item.semester.year,
+      code: course.ccode,
+      name: course.cname,
+      result: item.grade,
+    }))
+  );
+
+  const data = nodes.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()) || item.code.toLowerCase().includes(search.toLowerCase()));
+
   const COLUMNS = [
+    { label: "Semester", renderCell: (item) => `${item.semester} ${item.year}` },
     { label: "Course Code", renderCell: (item) => item.code, resize: true },
-    { label: "Course", renderCell: (item) => item.name, resize: true },
-    { label: "Credit", renderCell: (item) => item.credit },
-    { label: "Mid", renderCell: (item) => item.mid },
-    { label: "Final", renderCell: (item) => item.final },
-    { label: "Out of 30", renderCell: (item) => item.misc },
-    { label: "Total", renderCell: (item) => item.total },
-    { label: "Grade", renderCell: (item) => item.grade },
+    { label: "Course Name", renderCell: (item) => item.name, resize: true },
+    { label: "Result", renderCell: (item) => item.result },
   ];
 
   return (
@@ -158,7 +63,8 @@ const Results = () => {
         <div className="row">
           <div className="col-md-6 col-12">
             <div className="pcontainer">
-              <CGChart semesters={semesters} cgpaValues={cgpaValues} sgpaValues={sgpaValues} />
+              {/* <CGChart semesters={semesters} cgpaValues={cgpaValues} sgpaValues={sgpaValues} /> */}
+              <CGChart2 height={250} width={500} />
             </div>
           </div>
           <div className="col-md-6 col-12">

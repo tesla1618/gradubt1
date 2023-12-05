@@ -99,13 +99,13 @@ export const login = (email, password, setError) => async (dispatch) => {
   }
 };
 
-export const registerUser = (name, email, password, re_password, sid, dept, is_student, is_teacher, isRegistered) => async (dispatch) => {
+export const registerUser = (username, email, password, re_password, isRegistered) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify({ name, email, password, re_password, sid, dept, is_student, is_teacher });
+  const body = JSON.stringify({ username, email, password, re_password });
   console.log("SUCCESS REG RUN");
   try {
     const res = await axios.post(`${LOCALHOST}/auth/users/`, body, config);

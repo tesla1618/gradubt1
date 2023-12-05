@@ -57,9 +57,11 @@ const CGChart = ({ semesters, cgpaValues, sgpaValues }) => {
   };
 
   return (
-    <div style={{ width: "500px" }}>
-      <Line data={data} options={options} />
-    </div>
+    <>
+      <div style={{ width: "500px" }}>
+        <Line data={data} options={options} />
+      </div>
+    </>
   );
 };
 
